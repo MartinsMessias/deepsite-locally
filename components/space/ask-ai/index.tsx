@@ -13,7 +13,7 @@ export const AskAi = () => {
         <textarea
           rows={3}
           className="w-full bg-transparent text-sm outline-none text-white placeholder:text-neutral-400 p-4 resize-none mb-1"
-          placeholder="Ask DeepSite anything..."
+          placeholder="Ask Retro Builder anything..."
           onChange={() => {}}
           onKeyDown={() => {}}
         />

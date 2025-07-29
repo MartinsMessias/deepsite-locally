@@ -6,7 +6,7 @@ export default function Home() {
     <>
       <header className="container mx-auto pt-20 px-6 relative flex flex-col items-center justify-center text-center">
         <div className="rounded-full border border-neutral-100/10 bg-neutral-100/5 text-xs text-neutral-300 px-3 py-1 max-w-max mx-auto mb-2">
-          ✨ DeepSite Public Beta
+          ✨ Retro Builder Public Beta
         </div>
         <h1 className="text-8xl font-semibold text-white font-mono max-w-4xl">
           Code your website with AI in seconds

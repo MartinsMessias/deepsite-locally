@@ -82,7 +82,7 @@ export function Footer({
             }
           `}</style>
           <span className="max-lg:hidden"><a
-            href="https://github.com/MartinsMessias/deepsite-locally"
+            href="https://github.com/MartinsMessias/retro-builder-locally" // TODO: Update to actual Retro Builder repo if different
             target="_blank"
             className="text-xs lg:text-sm font-medium py-2 px-3 lg:px-4 rounded-lg flex items-center  transition-all duration-100 cursor-pointer"
           >

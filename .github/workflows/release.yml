@@ -1,0 +1,141 @@
+name: Release app
+
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+jobs:
+
+  build-windows:
+    name: Build Windows Installer
+    runs-on: windows-latest
+    outputs:
+      version: ${{ steps.version.outputs.package_version }}
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Extract version (hardcoded)
+        id: version
+        run: echo "package_version=0.0.1" >> $GITHUB_OUTPUT
+
+      - name: Build Windows installer
+        run: npm run make
+
+      - name: Upload Windows Installer
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-installer
+          path: out/make/squirrel.windows/x64/*.exe
+
+  build-linux:
+    name: Build Linux AppImage
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.package_version }}
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Extract version (hardcoded)
+        id: version
+        run: echo "package_version=0.0.1" >> $GITHUB_OUTPUT
+
+      - name: Build Linux AppImage
+        run: npm run make
+
+      - name: Check AppImage exists
+        run: |
+          echo "Listing files in out/make/appimage/x64/"
+          ls -l out/make/appimage/x64/
+          if [ ! -f out/make/appimage/x64/*.AppImage ]; then
+            echo "AppImage not found!"
+            exit 1
+          fi
+
+      - name: Upload Linux AppImage
+        uses: actions/upload-artifact@v4
+        with:
+          name: linux-app
+          path: out/make/appimage/x64/*.AppImage
+
+
+  release:
+    name: Create GitHub Release
+    runs-on: ubuntu-latest
+    needs: [build-windows, build-linux]
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Download Windows Installer
+        uses: actions/download-artifact@v4
+        with:
+          name: windows-installer
+          path: artifacts/windows-installer
+
+      - name: Download Linux AppImage
+        uses: actions/download-artifact@v4
+        with:
+          name: linux-app
+          path: artifacts/linux-app
+
+      - name: Set up Git user
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+
+      - name: Commit and tag version
+        run: |
+          VERSION=${{ needs.build-windows.outputs.version }}
+          git tag -a "v$VERSION" -m "Release v$VERSION"
+          git push origin "v$VERSION"
+
+
+
+
+
+      - name: Extract release notes from CHANGELOG.md
+        id: changelog
+        run: |
+          VERSION=${{ needs.build-windows.outputs.version }}
+          echo "Extracting changelog for version $VERSION..."
+          
+          NOTES=$(awk "/^##?\\s*\\[?$VERSION\\]?\\s*$/,/^##?\\s+/" CHANGELOG.md | sed '1d;$d')
+          if [ -z "$NOTES" ]; then
+            NOTES="⚠️ No matching release notes found for version $VERSION in CHANGELOG.md."
+          fi
+
+          echo "release_notes<<EOF" >> $GITHUB_OUTPUT
+          echo "$NOTES" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v${{ needs.build-windows.outputs.version }}
+          name: Release v${{ needs.build-windows.outputs.version }}
+          body: ${{ steps.changelog.outputs.release_notes }}
+          files: |
+            artifacts/windows-installer/*.exe
+            artifacts/linux-app/*.AppImage
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

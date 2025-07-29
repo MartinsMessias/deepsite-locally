@@ -86,11 +86,11 @@ export default function Navigation() {
           <Image
             src={Logo}
             className="w-9 mr-1"
-            alt="DeepSite Logo"
+            alt="Retro Builder Logo"
             width={64}
             height={64}
           />
-          <p className="font-sans text-white text-xl font-bold">DeepSite</p>
+          <p className="font-sans text-white text-xl font-bold">Retro Builder</p>
         </Link>
         <ul className="items-center justify-center gap-6 hidden">
           {navigationLinks.map((link) => (

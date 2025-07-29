@@ -1,15 +1,15 @@
 export const PROVIDERS = {
   "openai-compatible": {
     name: "OpenAI Compatible",
-    max_tokens: 128_000,
+    max_tokens: 256_000,
     id: "openai-compatible",
   },
 };
 
 export const MODELS = [
   {
-    value: "gpt-4o-mini", // Default model, can be overridden by user
-    label: "GPT-4o Mini (Default)",
+    value: "codestral-latest", // Default model, can be overridden by user
+    label: "Codestral (Default)",
     providers: ["openai-compatible"],
     autoProvider: "openai-compatible",
     isThinker: false,

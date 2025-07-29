@@ -303,7 +303,7 @@ export function AskAI({
               }}
             >
               <p className="text-sm font-medium text-neutral-300 group-hover:text-neutral-200 transition-colors duration-200">
-                {isThinking ? "DeepSite is thinking..." : "DeepSite's plan"}
+                  {isThinking ? "Retro Builder is thinking..." : "Retro Builder's plan"}
               </p>
               <ChevronDown
                 className={classNames(
@@ -369,10 +369,10 @@ export function AskAI({
             )}
             placeholder={
               selectedElement
-                ? `Ask DeepSite about ${selectedElement.tagName.toLowerCase()}...`
+                ? `Ask Retro Builder about ${selectedElement.tagName.toLowerCase()}...`
                 : hasAsked
-                ? "Ask DeepSite for edits"
-                : "Ask DeepSite anything..."
+                ? "Ask Retro Builder for edits"
+                : "Ask Retro Builder anything..."
             }
             value={prompt}
             onChange={(e) => setPrompt(e.target.value)}

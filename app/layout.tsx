@@ -20,34 +20,34 @@ const ptSans = PT_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "DeepSite | Build with AI ✨",
+  title: "Retro Builder | Build with AI ✨",
   description:
-    "DeepSite is a web development tool that helps you build websites with AI, no code required. Let's deploy your website with DeepSite and enjoy the magic of AI.",
+    "Retro Builder is a web development tool that helps you build websites with AI, no code required. Let's deploy your website with Retro Builder and enjoy the magic of AI.",
   openGraph: {
-    title: "DeepSite | Build with AI ✨",
+    title: "Retro Builder | Build with AI ✨",
     description:
-      "DeepSite is a web development tool that helps you build websites with AI, no code required. Let's deploy your website with DeepSite and enjoy the magic of AI.",
-    url: "https://deepsite.hf.co",
-    siteName: "DeepSite",
+      "Retro Builder is a web development tool that helps you build websites with AI, no code required. Let's deploy your website with Retro Builder and enjoy the magic of AI.",
+    url: "https://retrobuilder.app", // TODO: Update to actual Retro Builder URL if different
+    siteName: "Retro Builder",
     images: [
       {
-        url: "https://deepsite.hf.co/banner.png",
+        url: "https://retrobuilder.app/banner.png", // TODO: Update to actual Retro Builder banner if different
         width: 1200,
         height: 630,
-        alt: "DeepSite Open Graph Image",
+        alt: "Retro Builder Open Graph Image",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "DeepSite | Build with AI ✨",
+    title: "Retro Builder | Build with AI ✨",
     description:
-      "DeepSite is a web development tool that helps you build websites with AI, no code required. Let's deploy your website with DeepSite and enjoy the magic of AI.",
-    images: ["https://deepsite.hf.co/banner.png"],
+      "Retro Builder is a web development tool that helps you build websites with AI, no code required. Let's deploy your website with Retro Builder and enjoy the magic of AI.",
+    images: ["https://retrobuilder.app/banner.png"], // TODO: Update to actual Retro Builder banner if different
   },
   appleWebApp: {
     capable: true,
-    title: "DeepSite",
+    title: "Retro Builder",
     statusBarStyle: "black-translucent",
   },
   icons: {
@@ -72,7 +72,7 @@ export default async function RootLayout({
     <html lang="en">
       <Script
         defer
-        data-domain="deepsite.hf.co"
+        data-domain="retrobuilder.app" // TODO: Update to actual Retro Builder analytics domain if different
         src="https://plausible.io/js/script.js"
       ></Script>
       <body

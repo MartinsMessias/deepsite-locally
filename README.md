@@ -1,20 +1,20 @@
 
 
 
-# DeepSite v2 🚀
+# Retro Builder 🚀
 
-> **Fork Notice:** This project is a fork of the original [DeepSite by enzostvs on Hugging Face Spaces](https://huggingface.co/spaces/enzostvs/deepsite).
+> **Fork Notice:** This project is a fork of the original [Retro Builder by enzostvs on Hugging Face Spaces](https://huggingface.co/spaces/enzostvs/retro-builder). // TODO: Update if new Hugging Face space exists
 
-> **Note:** If you want to access the previous version of DeepSite, check the `main-v1` branch on this repository.
+> **Note:** If you want to access the previous version of Retro Builder, check the `main-v1` branch on this repository.
 
 ![Banner Screenshot](./localconfig.png)
 
-Run **DeepSite** in your own environment, without relying on external services!
+Run **Retro Builder** in your own environment, without relying on external services!
 Perfect for those who want to customize, integrate, or have full control over the platform.
 
 ---
 
-## How to run DeepSite v2 locally
+## How to run Retro Builder locally
 
 ### 1. Clone the repository
 ```bash
