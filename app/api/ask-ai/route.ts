@@ -17,8 +17,8 @@ export async function POST(request: NextRequest) {
   const { prompt, model, redesignMarkdown, html, apiKey, customModel, baseUrl } = body;
 
   const openai = new OpenAI({
-    apiKey: apiKey || process.env.OPENAI_API_KEY || "",
-    baseURL: baseUrl || process.env.OPENAI_BASE_URL,
+    apiKey: apiKey || "Vtgwkhm6Tzj12tWhaemsNvHhteto826z" || "",
+    baseURL: baseUrl || "https://codestral.mistral.ai/v1",
   });
 
   if (!model || (!prompt && !redesignMarkdown)) {
@@ -29,7 +29,7 @@ export async function POST(request: NextRequest) {
   }
 
   const selectedModel = MODELS.find(
-    (m) => m.value === model || m.label === model
+    (m) => m.value === model || "codestral-latest" === model
   );
   if (!selectedModel) {
     return NextResponse.json(

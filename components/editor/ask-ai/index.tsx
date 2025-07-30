@@ -183,7 +183,7 @@ export function AskAI({
                 return;
               }
 
-              toast.success("AI responded successfully");
+              toast.success("REtro is done!");
               setPreviousPrompt(prompt);
               setPrompt("");
               setisAiWorking(false);
@@ -293,6 +293,7 @@ export function AskAI({
 
   return (
     <div className="px-3">
+    <div className="px-3">
       <div className="relative bg-neutral-800 border border-neutral-700 rounded-2xl ring-[4px] focus-within:ring-neutral-500/30 focus-within:border-neutral-600 ring-transparent z-10 w-full group">
         {think && (
           <div className="w-full border-b border-neutral-700 relative overflow-hidden">
@@ -341,23 +342,6 @@ export function AskAI({
           </div>
         )}
         <div className="w-full relative flex items-center justify-between">
-          {isAiWorking && (
-            <div className="absolute bg-neutral-800 rounded-lg bottom-0 left-4 w-[calc(100%-30px)] h-full z-1 flex items-center justify-between max-lg:text-sm">
-              <div className="flex items-center justify-start gap-2">
-                <Loading overlay={false} className="!size-4" />
-                <p className="text-neutral-400 text-sm">
-                  AI is {isThinking ? "thinking" : "coding"}...{" "}
-                </p>
-              </div>
-              <div
-                className="text-xs text-neutral-400 px-1 py-0.5 rounded-md border border-neutral-600 flex items-center justify-center gap-1.5 bg-neutral-800 hover:brightness-110 transition-all duration-200 cursor-pointer"
-                onClick={stopController}
-              >
-                <FaStopCircle />
-                Stop generation
-              </div>
-            </div>
-          )}
           <input
             type="text"
             disabled={isAiWorking}
@@ -383,7 +367,6 @@ export function AskAI({
             }}
           />
         </div>
-        <div className="flex items-center justify-between gap-2 px-4 pb-3">
           <div className="flex-1 flex items-center justify-start gap-1.5">
             <ReImagine onRedesign={(md) => callAi(md)} />
             {!isSameHtml && (
@@ -408,7 +391,7 @@ export function AskAI({
                   align="start"
                   className="bg-neutral-950 text-xs text-neutral-200 py-1 px-2 rounded-md -translate-y-0.5"
                 >
-                  Select an element on the page to ask DeepSite edit it
+                  Select an element on the page to ask Retro Builder edit it
                   directly.
                 </TooltipContent>
               </Tooltip>
@@ -455,7 +438,7 @@ export function AskAI({
         )}
       </div>
       <audio ref={audio} id="audio" className="hidden">
-        <source src="/success.mp3" type="audio/mpeg" />
+  <source src="/success.wav" type="audio/wav" />
         Your browser does not support the audio element.
       </audio>
     </div>
